@@ -1,13 +1,10 @@
 import React from 'react';
+import Tweets from './tweets';
 
 export default class Application extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      icons: [],
-      names: [],
-      accounts: [],
-      contents: [],
       icon: '',
       name: '',
       account: '',
@@ -16,7 +13,7 @@ export default class Application extends React.Component{
   }
   iconArea = (t) => {
     this.setState({
-      name: t.target.value
+      icon: t.target.value
     });
   }
 
@@ -34,9 +31,10 @@ export default class Application extends React.Component{
 
   submitTweet = () => {
     const {icon,name,account,textArea} = this.state;
-    if(icon !== null && name !== null && account !== null && textArea !==null){
-      const {icons,names,accounts,contents} = this.state;
-      this.setState({
+    const hoge = new Tweets;
+    const {icons,names,accounts,contents} = hoge.state;
+    if(icon != null && name != null && account != null && textArea != null){
+      hoge.setState({
         icons: [...icons,icon],
         names: [...names,name],
         accounts: [...account,account],
@@ -47,10 +45,9 @@ export default class Application extends React.Component{
 
   render(){
     return(
-      <div class="container">
-        <form class="tweet-form">
-          <label class="input-wrapper">
-            <span class="label">アイコン</span>
+      <div className="container">
+          <label className="input-wrapper">
+            <span className="label">アイコン</span>
             <input
               type="text"
               placeholder="&nbsp;"
@@ -58,8 +55,8 @@ export default class Application extends React.Component{
               spellcheck="false"
               required/>
           </label>
-          <label class="input-wrapper">
-            <span class="label">ニックネーム</span>
+          <label className="input-wrapper">
+            <span className="label">ニックネーム</span>
             <input
               type="text"
               placeholder="&nbsp;"
@@ -67,8 +64,8 @@ export default class Application extends React.Component{
               spellcheck="false"
               required/>
           </label>
-          <label class="input-wrapper">
-            <span class="label">twitter(3chan)ID</span>
+          <label className="input-wrapper">
+            <span className="label">twitter(3chan)ID</span>
             <input
               type="text"
               placeholder="&nbsp;"
@@ -76,8 +73,8 @@ export default class Application extends React.Component{
               spellcheck="false"
               required/>
           </label>
-          <label class="input-wrapper">
-            <span class="label"></span>
+          <label className="input-wrapper">
+            <span className="label"></span>
             <input
               type="textArea"
               placeholder="今日は何もない素晴らしい一日だった"
@@ -86,7 +83,8 @@ export default class Application extends React.Component{
               required/>
           </label>
           <button onClick={this.submitTweet}>送信</button>
-        </form>
-      </div>);
+          <Tweets />
+      </div>
+    );
   }
 }
